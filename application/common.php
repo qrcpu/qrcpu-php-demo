@@ -17,7 +17,7 @@ function get_img2local($imgurl){
 	$img_parse_url['pathinfo'] = pathinfo($img_parse_url['path']);
 
 	$_ext = strtolower($img_parse_url['pathinfo']['extension']);
-	if(!in_array($_ext,['png','jpg','gif','jpeg'])){
+	if(!in_array($_ext,['png','jpg','gif','jpeg','svg','pdf'])){
 		return '';
 	}
 	
