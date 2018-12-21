@@ -6,29 +6,26 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: yunwuxin <448901948@qq.com>
+// | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
+namespace think\console\command;
 
-namespace think\exception;
+use think\console\Command;
+use think\console\Input;
+use think\console\Output;
+use think\facade\App;
 
-class ValidateException extends \RuntimeException
+class Version extends Command
 {
-    protected $error;
-
-    public function __construct($error, $code = 0)
+    protected function configure()
     {
-        $this->error   = $error;
-        $this->message = is_array($error) ? implode("\n\r", $error) : $error;
-        $this->code    = $code;
+        // 指令配置
+        $this->setName('version')
+            ->setDescription('show thinkphp framework version');
     }
 
-    /**
-     * 获取验证错误信息
-     * @access public
-     * @return array|string
-     */
-    public function getError()
+    protected function execute(Input $input, Output $output)
     {
-        return $this->error;
+        $output->writeln('v' . App::version());
     }
 }
